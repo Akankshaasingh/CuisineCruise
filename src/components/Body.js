@@ -2,6 +2,8 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [ListOfRestaurants, setListOfRestaurant] = useState([]);
@@ -14,16 +16,23 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-"https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"    );    
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.7998616&lng=75.8236163&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
     const json = await data.json();
 
     console.log(json);
     //optional chaining
 
-    const restaurants = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    const restaurants =
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
     setListOfRestaurant(restaurants);
     setFilteredRestaurants(restaurants); // Set the filtered list initially
   };
+
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false) return <h1>Uh Oh! Looks like you're offline</h1>;
 
   return ListOfRestaurants.length === 0 ? (
     <Shimmer />
@@ -40,12 +49,13 @@ const Body = () => {
             }}
           />
           <button
+            className="search-button"
             onClick={() => {
               // Convert both searchText and restaurant name to lowercase for case-insensitive comparison
               const filteredRestaurent = ListOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-             setFilteredRestaurants(filteredRestaurent);
+              setFilteredRestaurants(filteredRestaurent);
             }}
           >
             Search
@@ -66,7 +76,12 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+          <Link
+            key={restaurant.info.id}
+            to={"/restaurant/" + restaurant.info.id}
+          >
+            <RestaurantCard resData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>
