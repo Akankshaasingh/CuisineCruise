@@ -198,16 +198,28 @@
     justify-content: center;
     margin: 20px 0;
 }
-
-
-.user-card {
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 12px;
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(120, 58, 58, 0.1);
-} 
-.menu {
+.about-us {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .user-card {
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px auto;
+    max-width: 250px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    cursor: pointer; /* Cursor pointer added */
+  }
+  
+  .user-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .menu {
     max-width: 600px;
     margin: 20px auto; /* Center the box */
     padding: 15px;
@@ -215,7 +227,9 @@
     border-radius: 6px;
   }
   
-  .menu h1, .menu h3, .menu h2 {
+  .menu h1,
+  .menu h2,
+  .menu h3 {
     text-align: center; /* Center the text */
     margin: 10px 0;
     color: #333;
@@ -232,5 +246,66 @@
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 4px;
+    cursor: pointer; /* Cursor pointer added */
+  }
+  
+  .contact-us {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 300px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .contact-us h1 {
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .contact-us p,
+  .contact-info p {
+    font-size: 1rem;
+    color: #333;
+    margin: 8px 0;
+  }
+  
+  .contact-info strong {
+    font-weight: bold;
+  }
+  
+  .cart {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .cart h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .cart ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .cart li {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    cursor: pointer; /* Cursor pointer added */
+  }
+  
+  .cart li:hover {
+    transform: translateY(-3px);
   }
   
